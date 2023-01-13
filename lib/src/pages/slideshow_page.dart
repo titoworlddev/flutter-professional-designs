@@ -5,9 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:disenos_app/theme/theme.dart';
 import 'package:disenos_app/src/widgets/slideshow.dart';
 import 'package:provider/provider.dart';
-// import 'package:disenos_app/src/widgets/miSlideshow.dart';
 
 class SlideshowPage extends StatelessWidget {
+  const SlideshowPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     bool isLarge;
@@ -16,7 +17,7 @@ class SlideshowPage extends StatelessWidget {
     } else {
       isLarge = false;
     }
-    final children = [
+    const children = [
       Expanded(child: MiSlideshow()),
       Expanded(child: MiSlideshow()),
     ];
@@ -33,6 +34,8 @@ class SlideshowPage extends StatelessWidget {
 }
 
 class MiSlideshow extends StatelessWidget {
+  const MiSlideshow({super.key});
+
   @override
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeChanger>(context);
@@ -41,7 +44,7 @@ class MiSlideshow extends StatelessWidget {
     return SlideShow(
       activoSize: 15,
       inactivoSize: 10,
-      colorActivo: (appTheme.darkTheme) ? accentColor : Color(0xffFF6389),
+      colorActivo: (appTheme.darkTheme) ? accentColor : const Color(0xffFF6389),
       colorInactivo: Colors.grey,
       puntosArriba: false,
       slides: [

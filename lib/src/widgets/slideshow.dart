@@ -11,21 +11,20 @@ class SlideShow extends StatelessWidget {
   final double inactivoSize;
   final ScrollPhysics? physics;
 
-  const SlideShow({
-    required this.slides, 
-    this.puntosArriba = false, 
-    this.colorActivo = Colors.blue, 
-    this.colorInactivo = Colors.grey, 
-    this.activoSize = 12.0, 
-    this.inactivoSize = 12.0,
-    this.physics = const BouncingScrollPhysics()
-  });
+  const SlideShow(
+      {super.key,
+      required this.slides,
+      this.puntosArriba = false,
+      this.colorActivo = Colors.blue,
+      this.colorInactivo = Colors.grey,
+      this.activoSize = 12.0,
+      this.inactivoSize = 12.0,
+      this.physics = const BouncingScrollPhysics()});
 
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(
-      create: (_) => new _SlideshowModel(),
+      create: (_) => _SlideshowModel(),
       builder: (context, child) {
         Provider.of<_SlideshowModel>(context).colorPrimario = colorActivo;
         Provider.of<_SlideshowModel>(context).colorSecundario = colorInactivo;
@@ -33,8 +32,11 @@ class SlideShow extends StatelessWidget {
         Provider.of<_SlideshowModel>(context).inactivoSize = inactivoSize;
         return SafeArea(
           child: Center(
-            child: _CrearEstructuraSlideshow(puntosArriba: puntosArriba, slides: slides, physics: physics,)
-          ),
+              child: _CrearEstructuraSlideshow(
+            puntosArriba: puntosArriba,
+            slides: slides,
+            physics: physics,
+          )),
         );
       },
       // child: SafeArea(
@@ -53,12 +55,12 @@ class SlideShow extends StatelessWidget {
 }
 
 class _CrearEstructuraSlideshow extends StatelessWidget {
-  const _CrearEstructuraSlideshow({
-    Key? key,
-    required this.puntosArriba,
-    required this.slides,
-    required this.physics
-  }) : super(key: key);
+  const _CrearEstructuraSlideshow(
+      {Key? key,
+      required this.puntosArriba,
+      required this.slides,
+      required this.physics})
+      : super(key: key);
 
   final bool puntosArriba;
   final List<Widget> slides;
@@ -68,13 +70,9 @@ class _CrearEstructuraSlideshow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (puntosArriba) 
-        _Dots(slides.length),
-        Expanded(
-          child: _Slides(slides, physics)
-        ),
-        if (!puntosArriba) 
-        _Dots(slides.length),
+        if (puntosArriba) _Dots(slides.length),
+        Expanded(child: _Slides(slides, physics)),
+        if (!puntosArriba) _Dots(slides.length),
       ],
     );
   }
@@ -99,7 +97,10 @@ class _Dots extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         // children: dotsList,
-        children: List.generate(totaSlides, (i) => _Dot(i)), // Esto basicamente sustituye al ciclo for que hay arriba porque hace lo mismo
+        children: List.generate(
+            totaSlides,
+            (i) => _Dot(
+                i)), // Esto basicamente sustituye al ciclo for que hay arriba porque hace lo mismo
       ),
     );
   }
@@ -116,24 +117,21 @@ class _Dot extends StatelessWidget {
 
     double tamano = 12;
     Color color;
-    if (ssModel.currentPage >= index - 0.5 && ssModel.currentPage < index + 0.5) {
+    if (ssModel.currentPage >= index - 0.5 &&
+        ssModel.currentPage < index + 0.5) {
       tamano = ssModel.activoSize;
-      color = ssModel.colorPrimario;      
+      color = ssModel.colorPrimario;
     } else {
       tamano = ssModel.inactivoSize;
-      color = ssModel.colorSecundario;      
+      color = ssModel.colorSecundario;
     }
 
-
     return AnimatedContainer(
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
       width: tamano,
       height: tamano,
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
   }
 }
@@ -149,7 +147,7 @@ class _Slides extends StatefulWidget {
 }
 
 class __SlidesState extends State<_Slides> {
-  final pageViewController = new PageController();
+  final pageViewController = PageController();
 
   @override
   void initState() {
@@ -169,12 +167,10 @@ class __SlidesState extends State<_Slides> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: PageView(
-        physics: widget.physics,
-        controller: pageViewController,
-        children: widget.slides.map((slide) => _Slide(slide)).toList(),
-      ),
+    return PageView(
+      physics: widget.physics,
+      controller: pageViewController,
+      children: widget.slides.map((slide) => _Slide(slide)).toList(),
     );
   }
 }
@@ -189,7 +185,7 @@ class _Slide extends StatelessWidget {
     return Container(
         height: double.infinity,
         width: double.infinity,
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         child: slide);
   }
 }
@@ -197,37 +193,17 @@ class _Slide extends StatelessWidget {
 class _SlideshowModel extends ChangeNotifier {
   double _currentPage = 0;
 
-  double get currentPage => this._currentPage;
+  double get currentPage => _currentPage;
   set currentPage(double valor) {
-    this._currentPage = valor;
+    _currentPage = valor;
     notifyListeners();
   }
 
-  Color _colorPrimario = Colors.blue;
-  
-  Color get colorPrimario => this._colorPrimario;
-  set colorPrimario(Color valor) {
-    this._colorPrimario = valor;
-  }
+  Color colorPrimario = Colors.blue;
 
-  Color _colorSecundario = Colors.grey;
-  
-  Color get colorSecundario => this._colorSecundario;
-  set colorSecundario(Color valor) {
-    this._colorSecundario = valor;
-  }
+  Color colorSecundario = Colors.grey;
 
-  double _activoSize = 12.0;
-  
-  double get activoSize => this._activoSize;
-  set activoSize(double valor) {
-    this._activoSize = valor;
-  }
+  double activoSize = 12.0;
 
-  double _inactivoSize = 12.0;
-  
-  double get inactivoSize => this._inactivoSize;
-  set inactivoSize(double valor) {
-    this._inactivoSize = valor;
-  }
+  double inactivoSize = 12.0;
 }

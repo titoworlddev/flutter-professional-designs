@@ -3,6 +3,8 @@ import 'package:disenos_app/theme/theme.dart';
 import 'package:provider/provider.dart';
 
 class SliverListPage extends StatelessWidget {
+  const SliverListPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +27,10 @@ class _BotonNewList extends StatelessWidget {
       child: MaterialButton(
         color: (appTheme.darkTheme)
             ? appTheme.currentTheme.colorScheme.secondary
-            : Color(0xffED6762),
-        shape: RoundedRectangleBorder(
+            : const Color(0xffED6762),
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(topLeft: Radius.circular(50))),
-        child: Container(
+        child: SizedBox(
           height: 100,
           width: size.width * 0.8,
           child: Center(
@@ -50,22 +52,22 @@ class _BotonNewList extends StatelessWidget {
 
 class _MainScroll extends StatelessWidget {
   final items = [
-    _ListItem('Orange', Color(0xffF08F66)),
-    _ListItem('Family', Color(0xffF2A38A)),
-    _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    _ListItem('Books', Color(0xffFCEBAF)),
-    _ListItem('Orange', Color(0xffF08F66)),
-    _ListItem('Family', Color(0xffF2A38A)),
-    _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    _ListItem('Books', Color(0xffFCEBAF)),
-    _ListItem('Orange', Color(0xffF08F66)),
-    _ListItem('Family', Color(0xffF2A38A)),
-    _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    _ListItem('Books', Color(0xffFCEBAF)),
-    _ListItem('Orange', Color(0xffF08F66)),
-    _ListItem('Family', Color(0xffF2A38A)),
-    _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    _ListItem('Books', Color(0xffFCEBAF)),
+    const _ListItem('Orange', Color(0xffF08F66)),
+    const _ListItem('Family', Color(0xffF2A38A)),
+    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    const _ListItem('Books', Color(0xffFCEBAF)),
+    const _ListItem('Orange', Color(0xffF08F66)),
+    const _ListItem('Family', Color(0xffF2A38A)),
+    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    const _ListItem('Books', Color(0xffFCEBAF)),
+    const _ListItem('Orange', Color(0xffF08F66)),
+    const _ListItem('Family', Color(0xffF2A38A)),
+    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    const _ListItem('Books', Color(0xffFCEBAF)),
+    const _ListItem('Orange', Color(0xffF08F66)),
+    const _ListItem('Family', Color(0xffF2A38A)),
+    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    const _ListItem('Books', Color(0xffFCEBAF)),
   ];
 
   @override
@@ -73,7 +75,7 @@ class _MainScroll extends StatelessWidget {
     final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
 
     return CustomScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       slivers: [
         // SliverAppBar(
         //   floating: true,
@@ -96,7 +98,7 @@ class _MainScroll extends StatelessWidget {
         SliverList(
           delegate: SliverChildListDelegate([
             ...items,
-            SizedBox(
+            const SizedBox(
               height: 100,
             )
           ]),
@@ -143,19 +145,21 @@ class _Titulo extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
             'New',
             style: TextStyle(
-                color: (appTheme.darkTheme) ? Colors.grey : Color(0xff532128),
+                color: (appTheme.darkTheme)
+                    ? Colors.grey
+                    : const Color(0xff532128),
                 fontSize: 50),
           ),
         ),
         Stack(
           children: [
-            SizedBox(
+            const SizedBox(
               width: 100,
             ),
             Positioned(
@@ -163,17 +167,17 @@ class _Titulo extends StatelessWidget {
               child: Container(
                 height: 8,
                 width: 100,
-                color: (appTheme.darkTheme) ? Colors.grey : Color(0xfff7cdd5),
+                color: (appTheme.darkTheme)
+                    ? Colors.grey
+                    : const Color(0xfff7cdd5),
               ),
             ),
-            Container(
-              child: Text(
-                'List',
-                style: TextStyle(
-                    color: Color(0xffd93a30),
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold),
-              ),
+            const Text(
+              'List',
+              style: TextStyle(
+                  color: Color(0xffd93a30),
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold),
             ),
           ],
         )
@@ -185,20 +189,20 @@ class _Titulo extends StatelessWidget {
 // ignore: unused_element
 class _ListaTareas extends StatelessWidget {
   final items = [
-    _ListItem('Orange', Color(0xffF08F66)),
-    _ListItem('Family', Color(0xffF2A38A)),
-    _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    _ListItem('Books', Color(0xffFCEBAF)),
-    _ListItem('Orange', Color(0xffF08F66)),
-    _ListItem('Family', Color(0xffF2A38A)),
-    _ListItem('Subscriptions', Color(0xffF7CDD5)),
-    _ListItem('Books', Color(0xffFCEBAF)),
+    const _ListItem('Orange', Color(0xffF08F66)),
+    const _ListItem('Family', Color(0xffF2A38A)),
+    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    const _ListItem('Books', Color(0xffFCEBAF)),
+    const _ListItem('Orange', Color(0xffF08F66)),
+    const _ListItem('Family', Color(0xffF2A38A)),
+    const _ListItem('Subscriptions', Color(0xffF7CDD5)),
+    const _ListItem('Books', Color(0xffFCEBAF)),
   ];
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       itemCount: items.length,
       itemBuilder: (context, index) => items[index],
     );
@@ -216,6 +220,14 @@ class _ListItem extends StatelessWidget {
     final appTheme = Provider.of<ThemeChanger>(context);
 
     return Container(
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.all(30),
+      height: 100,
+      margin: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: color,
+          // color: (appTheme.darkTheme) ? Colors.grey : color,
+          borderRadius: BorderRadius.circular(30)),
       child: Text(
         titulo,
         style: TextStyle(
@@ -223,14 +235,6 @@ class _ListItem extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontSize: 20),
       ),
-      alignment: Alignment.centerLeft,
-      padding: EdgeInsets.all(30),
-      height: 100,
-      margin: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          color: color,
-          // color: (appTheme.darkTheme) ? Colors.grey : color,
-          borderRadius: BorderRadius.circular(30)),
       // child: ,
     );
   }

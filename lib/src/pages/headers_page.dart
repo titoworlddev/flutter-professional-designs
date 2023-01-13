@@ -7,8 +7,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class HeadersPage extends StatefulWidget {
+  const HeadersPage({super.key});
+
   @override
-  _HeadersPageState createState() => _HeadersPageState();
+  State<HeadersPage> createState() => _HeadersPageState();
 }
 
 class _HeadersPageState extends State<HeadersPage> {
@@ -30,7 +32,7 @@ class _HeadersPageState extends State<HeadersPage> {
         .withGreen(150);
 
     return Scaffold(
-        body: Container(
+        body: SizedBox(
       height: double.infinity,
       width: double.infinity,
       child: Stack(

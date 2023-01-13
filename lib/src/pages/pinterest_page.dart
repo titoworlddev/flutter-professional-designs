@@ -7,6 +7,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:disenos_app/src/widgets/pinterest_menu.dart';
 
 class PinterestPage extends StatelessWidget {
+  const PinterestPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -14,7 +16,7 @@ class PinterestPage extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           alignment: Alignment.center,
-          children: [PinterestGrid(), _PinterestMenuLocation()],
+          children: [const PinterestGrid(), _PinterestMenuLocation()],
         ),
       ),
     );
@@ -41,26 +43,11 @@ class _PinterestMenuLocation extends StatelessWidget {
               activeColor: appTheme.colorScheme.secondary,
               // inactiveColor: Colors.blueGrey,
               items: [
+                PinterestButton(icon: Icons.pie_chart, onPressed: () {}),
+                PinterestButton(icon: Icons.search, onPressed: () {}),
+                PinterestButton(icon: Icons.notifications, onPressed: () {}),
                 PinterestButton(
-                    icon: Icons.pie_chart,
-                    onPressed: () {
-                      print('Icon pie_chart');
-                    }),
-                PinterestButton(
-                    icon: Icons.search,
-                    onPressed: () {
-                      print('Icon search');
-                    }),
-                PinterestButton(
-                    icon: Icons.notifications,
-                    onPressed: () {
-                      print('Icon notifications');
-                    }),
-                PinterestButton(
-                    icon: Icons.supervised_user_circle,
-                    onPressed: () {
-                      print('Icon supervised_user_circle');
-                    }),
+                    icon: Icons.supervised_user_circle, onPressed: () {}),
               ],
             ),
             // Spacer(),
@@ -70,13 +57,15 @@ class _PinterestMenuLocation extends StatelessWidget {
 }
 
 class PinterestGrid extends StatefulWidget {
+  const PinterestGrid({super.key});
+
   @override
-  _PinterestGridState createState() => _PinterestGridState();
+  State<PinterestGrid> createState() => _PinterestGridState();
 }
 
 class _PinterestGridState extends State<PinterestGrid> {
   final List<int> items = List.generate(200, (i) => i);
-  ScrollController controller = new ScrollController();
+  ScrollController controller = ScrollController();
   double scrollAnterior = 0;
 
   @override
@@ -120,7 +109,7 @@ class _PinterestGridState extends State<PinterestGrid> {
       count = 2;
     }
     return StaggeredGridView.countBuilder(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       controller: controller,
       crossAxisCount:
           count, // el numero de elementos maximo que cabe en el vertical, teniendo en cuenta el tamaño especificado abajo
@@ -144,8 +133,8 @@ class _PinterestItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsetsDirectional.all(5),
-        decoration: BoxDecoration(
+        margin: const EdgeInsetsDirectional.all(5),
+        decoration: const BoxDecoration(
             color: Colors.blue,
             borderRadius: BorderRadius.all(Radius.circular(30))),
         child: Center(
@@ -160,9 +149,9 @@ class _PinterestItem extends StatelessWidget {
 class _MenuModel with ChangeNotifier {
   bool _mostrar = true;
 
-  bool get mostrar => this._mostrar;
+  bool get mostrar => _mostrar;
   set mostrar(bool valor) {
-    this._mostrar = valor;
+    _mostrar = valor;
     notifyListeners();
   }
 }

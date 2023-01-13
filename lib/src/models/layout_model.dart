@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:disenos_app/src/pages/slideshow_page.dart';
 
 class LayoutModel with ChangeNotifier {
+  Widget _currentPage = const SlideshowPage();
 
-  Widget _currentPage = SlideshowPage();
-  
-  Widget get currentPage => this._currentPage;
+  Widget get currentPage => _currentPage;
   set currentPage(Widget valor) {
-    this._currentPage = valor;
+    _currentPage = valor;
     notifyListeners();
   }
 }

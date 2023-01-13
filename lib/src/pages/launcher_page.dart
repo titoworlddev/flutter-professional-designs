@@ -7,6 +7,8 @@ import 'package:disenos_app/src/routes/routes.dart';
 import 'package:disenos_app/theme/theme.dart';
 
 class LauncherPage extends StatelessWidget {
+  const LauncherPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
@@ -15,7 +17,7 @@ class LauncherPage extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: appTheme.colorScheme.secondary,
-          title: Text('Diseños en Flutter - Telefono'),
+          title: const Text('Diseños en Flutter - Telefono'),
         ),
         drawer: _MenuPrincipal(),
         body: _ListaOpciones());
@@ -28,7 +30,7 @@ class _ListaOpciones extends StatelessWidget {
     final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
 
     return ListView.separated(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       separatorBuilder: (context, i) => Divider(
         color: appTheme.primaryColorLight,
       ),
@@ -62,54 +64,52 @@ class _MenuPrincipal extends StatelessWidget {
     final accentColor = appTheme.currentTheme.colorScheme.secondary;
 
     return Drawer(
-      child: Container(
-        child: Column(
-          children: [
-            SafeArea(
-              child: Container(
-                padding: EdgeInsets.all(10),
-                width: double.infinity,
-                height: 200,
-                child: CircleAvatar(
-                  backgroundColor: accentColor,
-                  child: Text(
-                    'CA',
-                    style: TextStyle(fontSize: 50),
-                  ),
+      child: Column(
+        children: [
+          SafeArea(
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              width: double.infinity,
+              height: 200,
+              child: CircleAvatar(
+                backgroundColor: accentColor,
+                child: const Text(
+                  'CA',
+                  style: TextStyle(fontSize: 50),
                 ),
               ),
             ),
-            Expanded(child: _ListaOpciones()),
-            ListTile(
+          ),
+          Expanded(child: _ListaOpciones()),
+          ListTile(
+            leading: Icon(
+              Icons.lightbulb_outline,
+              color: accentColor,
+            ),
+            title: const Text('Dark Mode'),
+            trailing: Switch.adaptive(
+                value: appTheme.darkTheme,
+                activeColor: accentColor,
+                onChanged: (value) => appTheme.darkTheme = value),
+          ),
+          SafeArea(
+            top: false,
+            left: false,
+            right: false,
+            bottom: true,
+            child: ListTile(
               leading: Icon(
-                Icons.lightbulb_outline,
+                Icons.add_to_home_screen,
                 color: accentColor,
               ),
-              title: Text('Dark Mode'),
+              title: const Text('Custom theme'),
               trailing: Switch.adaptive(
-                  value: appTheme.darkTheme,
+                  value: appTheme.customTheme,
                   activeColor: accentColor,
-                  onChanged: (value) => appTheme.darkTheme = value),
+                  onChanged: (value) => appTheme.customTheme = value),
             ),
-            SafeArea(
-              top: false,
-              left: false,
-              right: false,
-              bottom: true,
-              child: ListTile(
-                leading: Icon(
-                  Icons.add_to_home_screen,
-                  color: accentColor,
-                ),
-                title: Text('Custom theme'),
-                trailing: Switch.adaptive(
-                    value: appTheme.customTheme,
-                    activeColor: accentColor,
-                    onChanged: (value) => appTheme.customTheme = value),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

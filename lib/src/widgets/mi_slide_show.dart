@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 class MiSlideShow extends StatefulWidget {
   final List<Widget> slides;
 
-  const MiSlideShow({required this.slides});
+  const MiSlideShow({super.key, required this.slides});
 
   @override
-  _MiSlideShowState createState() => _MiSlideShowState();
+  State<MiSlideShow> createState() => _MiSlideShowState();
 }
 
 class _MiSlideShowState extends State<MiSlideShow> {
-
   final SliderModel sliderModel = SliderModel();
-  final pageViewController = new PageController();
+  final pageViewController = PageController();
 
   @override
   void initState() {
@@ -25,7 +24,7 @@ class _MiSlideShowState extends State<MiSlideShow> {
   }
 
   @override
-  void dispose() { 
+  void dispose() {
     pageViewController.dispose();
     super.dispose();
   }
@@ -34,7 +33,10 @@ class _MiSlideShowState extends State<MiSlideShow> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: [Expanded(child: _Slides(widget.slides, pageViewController)), _Dots(widget.slides.length)],
+        children: [
+          Expanded(child: _Slides(widget.slides, pageViewController)),
+          _Dots(widget.slides.length)
+        ],
       ),
     );
   }
@@ -52,7 +54,7 @@ class _Dots extends StatelessWidget {
     //   dotsList.add(_Dot(i));
     // }
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 70,
       child: Row(
@@ -75,28 +77,24 @@ class _Dot extends StatelessWidget {
     final pageViewindex = sliderModel.currentPage;
 
     return AnimatedContainer(
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
       width: 12,
       height: 12,
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
-        color: (pageViewindex >= index - 0.5 && pageViewindex < index + 0.5)
-            ? Color(0xffFF6389)
-            : Colors.grey,
-        shape: BoxShape.circle
-      ),
+          color: (pageViewindex >= index - 0.5 && pageViewindex < index + 0.5)
+              ? const Color(0xffFF6389)
+              : Colors.grey,
+          shape: BoxShape.circle),
     );
   }
 }
 
 class _Slides extends StatefulWidget {
   final List<Widget> slides;
-  final pageViewController;
+  final PageController pageViewController;
 
-  const _Slides(
-    this.slides, 
-    this.pageViewController
-  );
+  const _Slides(this.slides, this.pageViewController);
 
   @override
   __SlidesState createState() => __SlidesState();
@@ -123,11 +121,9 @@ class __SlidesState extends State<_Slides> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: PageView(
-        controller: widget.pageViewController,
-        children: widget.slides.map((slide) => _Slide(slide)).toList(),
-      ),
+    return PageView(
+      controller: widget.pageViewController,
+      children: widget.slides.map((slide) => _Slide(slide)).toList(),
     );
   }
 }
@@ -140,11 +136,10 @@ class _Slide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: double.infinity,
-      width: double.infinity,
-      padding: EdgeInsets.all(30),
-      child: slide
-    );
+        height: double.infinity,
+        width: double.infinity,
+        padding: const EdgeInsets.all(30),
+        child: slide);
   }
 }
 
@@ -158,5 +153,4 @@ class SliderModel {
   SliderModel._internal();
 
   double currentPage = 0;
-
 }

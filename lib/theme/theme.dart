@@ -29,10 +29,10 @@ class ThemeChanger with ChangeNotifier {
         _customTheme = true;
         _currentTheme = ThemeData.dark().copyWith(
           primaryColorLight: Colors.white,
-          scaffoldBackgroundColor: Color(0xff16202b),
-          textTheme: TextTheme(bodyText1: TextStyle(color: Colors.white)),
+          scaffoldBackgroundColor: const Color(0xff16202b),
+          textTheme: const TextTheme(bodyText1: TextStyle(color: Colors.white)),
           colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: Color(0xff48a0eb),
+            secondary: const Color(0xff48a0eb),
           ),
         );
         break;
@@ -46,13 +46,13 @@ class ThemeChanger with ChangeNotifier {
     }
   }
 
-  bool get darkTheme => this._darkTheme;
-  bool get customTheme => this._customTheme;
-  ThemeData get currentTheme => this._currentTheme;
+  bool get darkTheme => _darkTheme;
+  bool get customTheme => _customTheme;
+  ThemeData get currentTheme => _currentTheme;
 
   set darkTheme(bool valor) {
     _customTheme = false;
-    this._darkTheme = valor;
+    _darkTheme = valor;
     if (valor) {
       _currentTheme = ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.pink),
@@ -67,14 +67,14 @@ class ThemeChanger with ChangeNotifier {
 
   set customTheme(bool valor) {
     _darkTheme = false;
-    this._customTheme = valor;
+    _customTheme = valor;
     if (valor) {
       _currentTheme = ThemeData.dark().copyWith(
         primaryColorLight: Colors.white,
-        scaffoldBackgroundColor: Color(0xff16202b),
-        textTheme: TextTheme(bodyText1: TextStyle(color: Colors.white)),
-        colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: Color(0xff48a0eb)),
+        scaffoldBackgroundColor: const Color(0xff16202b),
+        textTheme: const TextTheme(bodyText1: TextStyle(color: Colors.white)),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(secondary: const Color(0xff48a0eb)),
       );
     } else {
       _currentTheme = ThemeData.light().copyWith(

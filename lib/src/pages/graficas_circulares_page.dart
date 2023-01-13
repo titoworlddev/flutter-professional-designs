@@ -6,8 +6,10 @@ import 'package:disenos_app/theme/theme.dart';
 import 'package:disenos_app/src/widgets/radial_progress.dart';
 
 class GraficasCircularesPage extends StatefulWidget {
+  const GraficasCircularesPage({super.key});
+
   @override
-  _GraficasCircularesPageState createState() => _GraficasCircularesPageState();
+  State<GraficasCircularesPage> createState() => _GraficasCircularesPageState();
 }
 
 class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
@@ -20,7 +22,7 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: appTheme.colorScheme.secondary,
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
         onPressed: () {
           porcentaje += 10;
           if (porcentaje > 100) {
@@ -66,6 +68,7 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
 
 class CustomRadialProgress extends StatelessWidget {
   const CustomRadialProgress({
+    super.key,
     required this.porcentaje,
     required this.color,
   });
@@ -96,7 +99,7 @@ class CustomRadialProgress extends StatelessWidget {
         ),
         Text(
           '${porcentaje.toStringAsFixed(2)} %',
-          style: TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 20),
         )
       ],
     );
