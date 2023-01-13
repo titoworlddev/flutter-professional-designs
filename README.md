@@ -1,4 +1,4 @@
-# Flutter profesional designs
+# Flutter professional designs
 
 Here we have a Flutter project showing many components and packages that are advanced and make our design much more professional.
 We have things like:
