@@ -2,10 +2,10 @@
 
 Here we have a Flutter project showing many components and packages that are advanced and make our design much more professional.
 We have things like:
--Drawer
 
+- Drawer
 - Custom themes
-  -Custom painter
+- Custom painter
 - Animations of all kinds
 - Progress bars
 - SlideShow
